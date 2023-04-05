@@ -422,34 +422,52 @@ class _SuperHeroName extends State<MyHomePage> {
 
                       children: <Widget>[
                         Container(
-                          color: theColors [snapshot.data![1][_superHeroNameIntern].toString()] ?? Colors.transparent ,
-                          child: Expanded(
+                            height: 300,
+                            color: theColors [snapshot.data![1][_superHeroNameIntern].toString()] ?? Colors.transparent ,
+                          child: Column(
+                            children: <Widget>[
+                              Expanded(
 
-                            child:Image.network(
-                              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' +
-                                  _superHeroNameIntern.toString() + '.png',
-                              height: MediaQuery.of(context).size.height * 0.1,
-                              width: MediaQuery.of(context).size.width  ,
-                              fit: BoxFit.contain,
+                                child:Image.network(
+                                  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' +
+                                      _superHeroNameIntern.toString() + '.png',
+                                  height: MediaQuery.of(context).size.height * 0.1,
+                                  width: MediaQuery.of(context).size.width  ,
+                                  fit: BoxFit.contain,
 
-                            ),
-
-
-                          ),
+                                ),
 
 
-                          height: 300,
+                              ),
+
+
+                            ],
+
+                          )
+
+
                         ),
 
+
+
+
+
+                        Padding(padding: EdgeInsets.all(10),
+                        child: Text(snapshot.data![0][_superHeroNameIntern].toString(),
+                            style: TextStyle(fontSize: 30.0), ),),
 
 
                         Card(
-                          child: Text('Sure aa a a aa aaa aaaaaaaaaa aaaaaaaaaa aa a aa a     aaaaaaaaa aaa a aaaaa'),
+                          child: Padding(
+                            padding: EdgeInsets.all(6), //apply padding to all four sides
+                            child: Text(snapshot.data![1][_superHeroNameIntern],
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                          elevation: 0,
                           color: theColors [snapshot.data![1][_superHeroNameIntern].toString()] ?? Colors.transparent ,
+                          margin: EdgeInsets.all(30),
                         ),
-
-
-
                       ]
 
                       ),
