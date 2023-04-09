@@ -4,26 +4,26 @@ import 'dart:convert';
 class PreperaterFunctions {
 
 
-   static  Future<List>  getAllPokemon () async {
+   static  Future<String>  getAllPokemon ( {required String number}) async {
     List<String> allNames = [" "];
 
-    for (var i = 1; i<152; i++) {
-      var url = Uri.parse('https://pokeapi.co/api/v2/pokemon/' + i.toString());
-      var res =   await http.get(url);
+
+      var url = Uri.parse('https://pokeapi.co/api/v2/pokemon/' + number);
+      var res = await http.get(url);
       if (res.statusCode != 200) throw Exception('http.get error: statusCode= ${res.statusCode}');
       Map<String, dynamic> theProperty = jsonDecode(res.body.toString());
       String theName = "${theProperty['name']}";
       allNames.add(theName) ;
-    }
+      print("Halloooo" + theName);
 
-    return await (allNames);
+    return await theName;
 
    }
-   static  Future<List>  getTypes () async {
+   static  Future<String>  getTypes ({required number}) async {
     List<String> allNames = [" "];
 
-    for (var i = 1; i<152; i++) {
-      var url = Uri.parse('https://pokeapi.co/api/v2/pokemon/' + i.toString());
+
+      var url = Uri.parse('https://pokeapi.co/api/v2/pokemon/' + number);
       var res =   await http.get(url);
       if (res.statusCode != 200) throw Exception('http.get error: statusCode= ${res.statusCode}');
       List<dynamic> theProperty = jsonDecode(res.body)["types"];
@@ -31,12 +31,13 @@ class PreperaterFunctions {
       String theList = (theName["types"].toString());
       String theActualName;
       theActualName = theList.split("slot: 1, type: {name: ")[1].split("\,")[0];
-      allNames.add(theActualName);
-      print("[" + theActualName + "]");
-    }
-    print('Howdy' +  allNames.toString() + "\n\n\n\n\n\n\n\n\n");
+      print("["+theActualName+"]");
 
-    return await (allNames);
+    return await (theActualName);
+
+   }
+
+   static void getStats({required number}) {
 
    }
 
